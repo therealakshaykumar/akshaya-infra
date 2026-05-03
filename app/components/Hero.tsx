@@ -74,7 +74,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-        className="absolute bottom-10 md:bottom-12 w-full flex flex-col items-center z-20 px-4"
+        className="absolute bottom-28 md:bottom-12 w-full flex flex-col items-center z-20 px-4"
       >
         {/* Divider Line */}
         <div className="w-[80%] max-w-[600px] h-[2px] bg-white mb-4 opacity-80 shadow-[0_1px_3px_rgba(0,0,0,0.5)]"></div>

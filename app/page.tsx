@@ -1,7 +1,7 @@
 // app/page.tsx
 import Hero from './components/Hero';
-// import Overview from './components/Overview';
-// import VisionMission from './components/VisionMission';
+import Overview from './components/Overview';
+import VisionMission from './components/VisionMission';
 // import Features from './components/Features';
 // import Products from './components/Products';
 // import Quality from './components/Quality';
@@ -17,8 +17,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 font-sans text-slate-900">
       <Hero />
-      {/* <Overview />
+      <Overview />
       <VisionMission />
+      {/* 
       <Features />
       <Products />
       <Quality />
