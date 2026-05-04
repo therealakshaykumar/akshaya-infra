@@ -2,7 +2,7 @@
 import Hero from './components/Hero';
 import Overview from './components/Overview';
 import VisionMission from './components/VisionMission';
-// import Features from './components/Features';
+import Features from './components/Features';
 // import Products from './components/Products';
 // import Quality from './components/Quality';
 // import Contact from './components/Contact';
@@ -18,9 +18,9 @@ export default function Home() {
     <main className="min-h-screen bg-slate-50 font-sans text-slate-900">
       <Hero />
       <Overview />
-      {/* <VisionMission /> */}
-      {/* 
+      <VisionMission />
       <Features />
+      {/* 
       <Products />
       <Quality />
       <Contact /> */}
