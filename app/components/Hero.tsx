@@ -1,13 +1,10 @@
-// app/components/Hero.tsx
 "use client";
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function Hero() {
   return (
-    // 1. Changed `h-screen` to `min-h-[100svh]` to allow content to dictate height on very short screens.
     <section className="relative min-h-[100svh] flex flex-col overflow-hidden bg-[#081e3a]">
-      {/* Background Image Setup */}
       <div className="absolute inset-0 z-0">
         <Image 
           src="/bg.jpg" 
@@ -19,7 +16,6 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-[#11325a]/80 to-[#081e3a]"></div>
       </div>
 
-      {/* Top Right Logo */}
       <motion.div 
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -35,9 +31,7 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* 2. Added a flex-grow wrapper to push the bottom content down naturally */}
       <div className="relative z-10 flex-grow flex flex-col justify-center items-center w-full pt-28 pb-10 md:pt-32 landscape:pt-20">
-        {/* Center Aligned Content */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,7 +49,6 @@ export default function Hero() {
             </h1>
           </div>
           
-          {/* Adjusted bottom margin using `landscape:` variant to save space on short screens */}
           <p 
             className="relative z-10 text-xl md:text-[2.5rem] text-white font-medium leading-snug mb-10 md:mb-16 landscape:mb-6"
             style={{ textShadow: '0px 2px 5px rgba(0,0,0,0.8)' }}
@@ -66,7 +59,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* 3. Removed `absolute bottom-X`. It now sits naturally at the bottom of the flex column. */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

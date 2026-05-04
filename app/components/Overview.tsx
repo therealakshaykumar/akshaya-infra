@@ -1,4 +1,3 @@
-// app/components/Overview.tsx
 "use client";
 import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
@@ -45,7 +44,6 @@ export default function Overview() {
           </ul>
         </motion.div>
         
-        {/* Placeholder for the refinery/storage tank image */}
         <motion.div
            initial={{ opacity: 0, scale: 0.95 }}
            whileInView={{ opacity: 1, scale: 1 }}

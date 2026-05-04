@@ -1,11 +1,12 @@
-// app/page.tsx
 import Hero from './components/Hero';
 import Overview from './components/Overview';
 import VisionMission from './components/VisionMission';
 import Features from './components/Features';
 import Products from './components/Products';
-// import Quality from './components/Quality';
-// import Contact from './components/Contact';
+import Quality from './components/Quality';
+import Contact from './components/Contact';
+import Advantages from './components/Advantages';
+import Footer from './components/Footer';
 
 export const metadata = {
   title: 'Akshaya Infra | Premium Bitumen & Emulsion Solutions',
@@ -21,9 +22,10 @@ export default function Home() {
       <VisionMission />
       <Features />
       <Products />
-      {/* 
       <Quality />
-      <Contact /> */}
+      <Advantages />
+      {/* <Contact /> */}
+      <Footer />
     </main>
   );
 }
