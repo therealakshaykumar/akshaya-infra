@@ -3,7 +3,7 @@ import Hero from './components/Hero';
 import Overview from './components/Overview';
 import VisionMission from './components/VisionMission';
 import Features from './components/Features';
-// import Products from './components/Products';
+import Products from './components/Products';
 // import Quality from './components/Quality';
 // import Contact from './components/Contact';
 
@@ -20,8 +20,8 @@ export default function Home() {
       <Overview />
       <VisionMission />
       <Features />
-      {/* 
       <Products />
+      {/* 
       <Quality />
       <Contact /> */}
     </main>
