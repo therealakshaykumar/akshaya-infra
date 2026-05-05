@@ -1,5 +1,5 @@
 "use client";
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 
 const products = [
@@ -33,26 +33,28 @@ const products = [
 export default function Products() {
   return (
     <section className="py-20 bg-[#0c2340] text-white px-6 md:px-12 w-full overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        
+      <div className="max-w-7xl auto">
+
         {/* Top Header Area */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-16 relative">
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
+            style={{ willChange: "transform, opacity" }}
             className="text-left"
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-3 tracking-tight">Our Products</h2>
             <p className="text-xl md:text-2xl text-blue-100/90 font-light tracking-wide">
               Comprehensive Range of Bitumen & Emulsion Solutions
             </p>
-          </motion.div>
-          
-          <motion.div
+          </m.div>
+
+          <m.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
+            style={{ willChange: "transform, opacity" }}
             className="hidden md:block"
           >
             <Image 
@@ -60,38 +62,41 @@ export default function Products() {
               alt="Akshaya Infra Logo" 
               width={140} 
               height={140} 
-              className="w-24 md:w-32 drop-shadow-xl" 
+              className="w-24 md:w-32 drop-shadow-xl transform-gpu" 
             />
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:divide-x divide-white/30">
           {products.map((prod, idx) => (
-            <motion.div
+            <m.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: idx * 0.15, duration: 0.6 }}
+              style={{ willChange: "transform, opacity" }}
               className="flex flex-col px-4 md:px-8 first:pl-0 last:pr-0"
             >
               {/* Centered Product Title */}
               <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 tracking-wide">
                 {prod.name}
               </h3>
-              
+
               {/* PERFECT ALIGNMENT FIX: 
                   Replaced aspect-[4/3] with a strict height (h-[220px] lg:h-[260px]) 
                   This forces every image box to be identical in size regardless of the source image. */}
-              <div className="relative w-full h-[220px] lg:h-[260px] mb-8 bg-white overflow-hidden shadow-lg">
-                <img 
+              <div className="relative w-full h-[220px] lg:h-[260px] mb-8 bg-white overflow-hidden shadow-lg transform-gpu">
+                <Image 
                   src={prod.image} 
                   alt={prod.name} 
-                  className="w-full h-full object-cover object-center" 
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover object-center" 
                 />
               </div>
-              
+
               {/* Bulleted Features List */}
               <ul className="list-disc pl-6 space-y-2.5 text-lg md:text-[1.15rem] text-white/95 font-light leading-snug">
                 {prod.features.map((feat, fIdx) => (
@@ -100,10 +105,10 @@ export default function Products() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </m.div>
           ))}
         </div>
-        
+
       </div>
     </section>
   );

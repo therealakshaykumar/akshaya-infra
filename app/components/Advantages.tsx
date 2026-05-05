@@ -1,5 +1,5 @@
 "use client";
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { Shield, Headphones, Star, Settings, Truck } from 'lucide-react';
 
@@ -36,11 +36,12 @@ export default function Advantages() {
     <section className="relative min-h-screen bg-white overflow-hidden py-16 flex flex-col w-full">
       
       {/* Faint Background Watermark Image */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.07]">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.07] transform-gpu">
         <Image 
           src="/bg.jpg" // Replace with your pouring bitumen / lab equipment image
           alt="Background Watermark" 
           fill 
+          sizes="100vw"
           className="object-cover object-center"
         />
       </div>
@@ -48,28 +49,31 @@ export default function Advantages() {
       <div className="max-w-[90rem] mx-auto px-6 md:px-12 w-full relative z-10 flex flex-col flex-grow">
         
         {/* Top Right Logo */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="absolute right-6 md:right-12 top-0 hidden md:block"
+          style={{ willChange: "transform, opacity" }}
+          className="absolute right-6 md:right-12 top-0 hidden md:block transform-gpu"
         >
           <Image 
             src="/logo.png" 
             alt="Akshaya Infra Logo" 
             width={140} 
             height={140} 
+            sizes="(max-width: 768px) 80px, 140px"
             className="w-24 md:w-32 drop-shadow-sm" 
           />
-        </motion.div>
+        </m.div>
 
         {/* Main Headers */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ willChange: "transform, opacity" }}
           className="mt-4 md:mt-8 mb-16 md:w-[75%]"
         >
           <h2 className="text-5xl md:text-[3.5rem] font-extrabold text-[#0F2A55] tracking-tight mb-3">
@@ -78,18 +82,19 @@ export default function Advantages() {
           <p className="text-2xl md:text-[1.75rem] text-gray-600 font-light tracking-wide">
             Our Key Competitive Advantages
           </p>
-        </motion.div>
+        </m.div>
 
         {/* 5-Column Grid Layout with Staggered Animation */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6 flex-grow items-start">
           {advantages.map((adv, idx) => (
-            <motion.div 
+            <m.div 
               key={idx} 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: idx * 0.15, duration: 0.6, ease: "easeOut" }}
-              className="flex flex-col items-center text-center px-2"
+              style={{ willChange: "transform, opacity" }}
+              className="flex flex-col items-center text-center px-2 transform-gpu"
             >
               
               {/* Double-Ring Icon Design */}
@@ -109,22 +114,23 @@ export default function Advantages() {
                 {adv.desc}
               </p>
               
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Bottom Footer Border & Branding */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+          style={{ willChange: "transform, opacity" }}
           className="mt-20 border-t-2 border-gray-300/60 w-full pt-6 pb-2"
         >
           <p className="text-lg md:text-xl text-[#0F2A55] font-extrabold tracking-wide">
             AKSHAYA INFRA <span className="font-light text-gray-600 ml-1">Premium Bitumen & Emulsion Solutions</span>
           </p>
-        </motion.div>
+        </m.div>
 
       </div>
     </section>
