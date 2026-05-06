@@ -1,21 +1,78 @@
 "use client";
 import { useState, useRef } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle2, Building2, User, Phone, Mail, MapPin, Package } from 'lucide-react';
+import { Send, CheckCircle2, Building2, User, Phone, Mail, MapPin, Package, AlertCircle } from 'lucide-react';
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  phone?: string;
+  company?: string;
+  gst?: string;
+  address?: string;
+}
 
 export default function Enquiry() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
   const formRef = useRef<HTMLFormElement>(null);
 
+  const validate = (formData: FormData): boolean => {
+    const newErrors: FormErrors = {};
+    
+    // Name Validation: Letters and spaces only, max 50 chars
+    const name = formData.get('entry.586361126') as string;
+    if (!/^[a-zA-Z\s]{1,50}$/.test(name)) {
+      newErrors.name = "Name should contain only letters and be max 50 characters.";
+    }
+
+    // Phone Validation: 10 digits
+    const phone = formData.get('entry.131257919') as string;
+    if (!/^\d{10}$/.test(phone)) {
+      newErrors.phone = "Please enter a valid 10-digit phone number.";
+    }
+
+    // Email Validation: Basic email regex
+    const email = formData.get('entry.1491408678') as string;
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    // Company Name: Alphanumeric and spaces, max 100 chars
+    const company = formData.get('entry.937622207') as string;
+    if (!/^[a-zA-Z0-9\s\.\-]{1,100}$/.test(company)) {
+      newErrors.company = "Company name should be alphanumeric and max 100 characters.";
+    }
+
+    // GST Number: 15 chars, standard GSTIN format
+    const gst = formData.get('entry.1945559581') as string;
+    if (!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(gst)) {
+      newErrors.gst = "Please enter a valid 15-digit GST number.";
+    }
+
+    // Delivery Address: Max 300 chars, basic punctuation allowed
+    const address = formData.get('entry.22132404') as string;
+    if (address && address.length > 300) {
+      newErrors.address = "Address should not exceed 300 characters.";
+    } else if (address && /[<>{}[\]\\^|]/.test(address)) {
+      newErrors.address = "Address contains invalid special characters.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
+    const formData = new FormData(formRef.current!);
+    
+    if (!validate(formData)) {
+      e.preventDefault();
+      return;
+    }
+
     setIsSubmitting(true);
-    // The actual submission is handled by the form action + target="hidden_iframe"
-    // We just wait a bit to show the success message
-    setTimeout(() => {
-      setSubmitted(true);
-      setIsSubmitting(false);
-    }, 1000);
+    // Note: The form will submit to the hidden iframe via the action attribute
   };
 
   return (
@@ -54,7 +111,6 @@ export default function Enquiry() {
               exit={{ opacity: 0, scale: 0.95 }}
               className="bg-white rounded-3xl shadow-2xl border border-slate-100 p-8 md:p-12"
             >
-              {/* Hidden Iframe for submission redirection bypass */}
               <iframe
                 name="hidden_iframe"
                 id="hidden_iframe"
@@ -63,6 +119,7 @@ export default function Enquiry() {
                   if (isSubmitting) {
                     setSubmitted(true);
                     setIsSubmitting(false);
+                    setErrors({});
                   }
                 }}
               ></iframe>
@@ -86,8 +143,9 @@ export default function Enquiry() {
                       name="entry.586361126"
                       required
                       placeholder="Your Full Name"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all"
+                      className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all`}
                     />
+                    {errors.name && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.name}</p>}
                   </div>
 
                   {/* Phone */}
@@ -99,9 +157,10 @@ export default function Enquiry() {
                       type="tel"
                       name="entry.131257919"
                       required
-                      placeholder="Your Mobile Number"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all"
+                      placeholder="10-digit Mobile Number"
+                      className={`w-full px-4 py-3 rounded-xl border ${errors.phone ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all`}
                     />
+                    {errors.phone && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.phone}</p>}
                   </div>
                 </div>
 
@@ -115,8 +174,9 @@ export default function Enquiry() {
                       type="email"
                       name="entry.1491408678"
                       placeholder="your@email.com"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all"
+                      className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all`}
                     />
+                    {errors.email && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.email}</p>}
                   </div>
 
                   {/* Company Name */}
@@ -129,8 +189,9 @@ export default function Enquiry() {
                       name="entry.937622207"
                       required
                       placeholder="Organization Name"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all"
+                      className={`w-full px-4 py-3 rounded-xl border ${errors.company ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all`}
                     />
+                    {errors.company && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.company}</p>}
                   </div>
                 </div>
 
@@ -143,9 +204,11 @@ export default function Enquiry() {
                     type="text"
                     name="entry.1945559581"
                     required
-                    placeholder="Enter GST Number"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all"
+                    placeholder="15-digit GSTIN (e.g., 22AAAAA0000A1Z5)"
+                    className={`w-full px-4 py-3 rounded-xl border ${errors.gst ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all`}
+                    onChange={(e) => e.target.value = e.target.value.toUpperCase()}
                   />
+                  {errors.gst && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.gst}</p>}
                 </div>
 
                 {/* Materials Required */}
@@ -181,8 +244,9 @@ export default function Enquiry() {
                     name="entry.22132404"
                     rows={3}
                     placeholder="Provide detailed delivery address..."
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all resize-none"
+                    className={`w-full px-4 py-3 rounded-xl border ${errors.address ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all resize-none`}
                   ></textarea>
+                  {errors.address && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.address}</p>}
                 </div>
 
                 <button
@@ -194,13 +258,7 @@ export default function Enquiry() {
                     : 'bg-[#0F2A55] hover:bg-[#1a3d75] text-white shadow-lg hover:shadow-xl'
                   }`}
                 >
-                  {isSubmitting ? (
-                    "Submitting..."
-                  ) : (
-                    <>
-                      Submit Enquiry <Send className="w-5 h-5" />
-                    </>
-                  )}
+                  {isSubmitting ? "Submitting..." : <>Submit Enquiry <Send className="w-5 h-5" /></>}
                 </button>
               </form>
             </m.div>
