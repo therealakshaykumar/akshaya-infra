@@ -24,6 +24,7 @@ export default function Features() {
             fill 
             sizes="100vw"
             className="object-cover object-center" 
+            quality={60}
           />
         </div>
         

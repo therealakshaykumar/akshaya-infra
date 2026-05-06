@@ -1,12 +1,14 @@
+import dynamic from 'next/dynamic';
 import Hero from './components/Hero';
-import Overview from './components/Overview';
-import VisionMission from './components/VisionMission';
-import Features from './components/Features';
-import Products from './components/Products';
-import Quality from './components/Quality';
-import Contact from './components/Contact';
-import Advantages from './components/Advantages';
-import Footer from './components/Footer';
+
+// Lazy load components that are below the fold
+const Overview = dynamic(() => import('./components/Overview'));
+const VisionMission = dynamic(() => import('./components/VisionMission'));
+const Features = dynamic(() => import('./components/Features'));
+const Products = dynamic(() => import('./components/Products'));
+const Quality = dynamic(() => import('./components/Quality'));
+const Advantages = dynamic(() => import('./components/Advantages'));
+const Footer = dynamic(() => import('./components/Footer'));
 
 export const metadata = {
   title: 'Akshaya Infra | Premium Bitumen & Emulsion Solutions',
@@ -24,7 +26,6 @@ export default function Home() {
       <Products />
       <Quality />
       <Advantages />
-      {/* <Contact /> */}
       <Footer />
     </main>
   );

@@ -94,6 +94,7 @@ export default function Products() {
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover object-center" 
+                  quality={60}
                 />
               </div>
 

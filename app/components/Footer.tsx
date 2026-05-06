@@ -16,7 +16,7 @@ export default function Footer() {
           fill 
           sizes="100vw"
           className="object-cover object-center" 
-          priority
+          quality={60}
         />
         
         

@@ -32,7 +32,7 @@ export default function Quality() {
             fill 
             sizes="(max-width: 768px) 100vw, 65vw"
             className="object-cover object-left opacity-90"
-            priority
+            quality={60}
           />
         </div>
       </div>
