@@ -139,7 +139,7 @@ export default function Footer() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           style={{ willChange: "transform, opacity" }}
-          className="w-full text-center pt-8 border-t border-gray-200"
+          className="w-full text-center pt-8 border-t border-gray-500/60"
         >
           <p className="text-[#0F2A55] font-bold text-lg md:text-xl tracking-wide">
             Contact us today for premium bitumen solutions and technical consultation.

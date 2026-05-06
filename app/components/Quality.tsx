@@ -105,7 +105,7 @@ export default function Quality() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           style={{ willChange: "transform, opacity" }}
-          className="mt-20 border-t border-gray-300 w-full md:w-[85%] pt-6 pb-2"
+          className="mt-20 border-t border-gray-500/60 w-full md:w-[85%] pt-6 pb-2"
         >
           <p className="text-lg md:text-xl text-[#0F2A55] font-extrabold tracking-wide">
             AKSHAYA INFRA <span className="font-light text-gray-600 ml-1 block md:inline mt-1 md:mt-0">Premium Bitumen & Emulsion Solutions</span>
