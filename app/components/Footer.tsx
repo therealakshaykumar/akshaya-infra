@@ -10,14 +10,14 @@ export default function Footer() {
       
       
       <div className="relative w-full h-[250px] sm:h-[350px] lg:h-[450px] transform-gpu">
-        <Image 
+        {/* <Image 
           src="/footer.jpeg" 
           alt="Highway Road Infrastructure" 
           fill 
           sizes="100vw"
           className="object-cover object-center" 
           quality={60}
-        />
+        /> */}
         
         
         <m.div 

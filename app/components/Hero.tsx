@@ -77,7 +77,7 @@ export default function Hero() {
           className="text-base md:text-2xl text-white font-normal tracking-wide"
           style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.6)' }}
         >
-          Bengaluru, India | +91 9108169453
+          Bengaluru, India | +91 9108169453 | +91 9606379772
         </p>
       </m.div>
     </section>
