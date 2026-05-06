@@ -10,14 +10,14 @@ export default function Footer() {
       
       
       <div className="relative w-full h-[250px] sm:h-[350px] lg:h-[450px] transform-gpu">
-        {/* <Image 
+        <Image 
           src="/footer.jpeg" 
           alt="Highway Road Infrastructure" 
           fill 
           sizes="100vw"
           className="object-cover object-center" 
           quality={60}
-        /> */}
+        />
         
         
         <m.div 
@@ -28,7 +28,7 @@ export default function Footer() {
           style={{ willChange: "transform, opacity" }}
           className="absolute top-6 right-6 md:top-12 md:right-16 z-10 transform-gpu"
         >
-          <Image src="/logo.png" alt="Akshaya Infra Logo" width="160" height="160" sizes="(max-width: 768px) 112px, 160px" className="w-28 md:w-40 drop-shadow-2xl"/>
+          {/* <Image src="/logo.png" alt="Akshaya Infra Logo" width="160" height="160" sizes="(max-width: 768px) 112px, 160px" className="w-28 md:w-40 drop-shadow-2xl"/> */}
         </m.div>
       </div>
 
