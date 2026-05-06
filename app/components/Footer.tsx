@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { m } from 'framer-motion';
-import { MapPin, Phone, Mail, CircleUser } from 'lucide-react';
+import { MapPin, Phone, Mail, CircleUser, Download } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -115,6 +115,21 @@ export default function Footer() {
             </m.div>
 
           </div>
+        </div>
+
+        {/* Centered Download CTA */}
+        <div className="flex justify-center mb-5">
+          <m.a 
+            href="/Akshaya Infra Corporate Profile.pdf"
+            download="Akshaya Infra Corporate Profile.pdf"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="inline-flex items-center gap-2 bg-[#0F2A55] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#1a3d75] transition-all shadow-lg hover:shadow-xl"
+          >
+            <Download className="w-5 h-5" /> Download Corporate Profile
+          </m.a>
         </div>
 
         

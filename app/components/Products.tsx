@@ -33,7 +33,7 @@ const products = [
 export default function Products() {
   return (
     <section className="py-20 bg-[#0c2340] text-white px-6 md:px-12 w-full overflow-hidden">
-      <div className="max-w-7xl auto">
+      <div className="max-w-7xl mx-auto">
 
         {/* Top Header Area */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-16 relative">
