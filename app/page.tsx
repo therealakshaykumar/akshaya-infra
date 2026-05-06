@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import Hero from './components/Hero';
+import Enquiry from './components/Enquiry';
 
 // Lazy load components that are below the fold
 const Overview = dynamic(() => import('./components/Overview'));
@@ -26,6 +27,7 @@ export default function Home() {
       <Products />
       <Quality />
       <Advantages />
+      <Enquiry />
       <Footer />
     </main>
   );
