@@ -110,7 +110,7 @@ export default function Footer() {
             >
               <Mail className="w-8 h-8 text-[#0F2A55] shrink-0"/>
               <p className="text-xl md:text-[1.35rem] text-gray-900">
-                Akshayainfra33@gmail.com
+                akshayainfra33@gmail.com
               </p>
             </m.div>
 

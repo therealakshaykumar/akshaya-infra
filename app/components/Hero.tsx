@@ -59,7 +59,7 @@ export default function Hero() {
             style={{ textShadow: '0px 2px 5px rgba(0,0,0,0.8)' }}
           >
             Premium Bitumen & Emulsion Solutions <br className="hidden md:block" /> 
-            for Roads Infrastructure
+            for Road Infrastructure
           </p>
         </m.div>
       </div>
