@@ -141,7 +141,7 @@ export default function Footer() {
           style={{ willChange: "transform, opacity" }}
           className="w-full text-center pt-8 border-t border-gray-500/60"
         >
-          <p className="text-[#0F2A55] font-bold text-lg md:text-xl tracking-wide">
+          <p className="text-[#0F2A55] font-bold text-lg md:text-xl tracking-wide px-12 md:px-24">
             Contact us today for premium bitumen solutions and technical consultation.
           </p>
         </m.div>
