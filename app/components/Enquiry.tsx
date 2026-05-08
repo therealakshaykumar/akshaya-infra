@@ -182,7 +182,7 @@ export default function Enquiry() {
                   className={`w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 transition-all ${
                     isSubmitting 
                     ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-[#0F2A55] hover:bg-[#1a3d75] text-white shadow-lg hover:shadow-xl'
+                    : 'bg-[#0F2A55] hover:bg-[#1a3d75] cursor-pointer text-white shadow-lg hover:shadow-xl'
                   }`}
                 >
                   {isSubmitting ? "Submitting..." : <>Submit Enquiry <Send className="w-5 h-5" /></>}
@@ -205,7 +205,7 @@ export default function Enquiry() {
               </p>
               <button
                 onClick={() => setSubmitted(false)}
-                className="text-[#0F2A55] font-semibold hover:underline"
+                className="text-[#0F2A55] font-semibold cursor-pointer hover:underline"
               >
                 Submit another enquiry
               </button>
