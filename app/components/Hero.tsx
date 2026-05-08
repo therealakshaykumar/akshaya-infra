@@ -73,12 +73,16 @@ export default function Hero() {
       >
         <div className="w-[80%] max-w-[600px] h-[2px] bg-white mb-4 opacity-80 shadow-[0_1px_3px_rgba(0,0,0,0.5)]"></div>
 
-        <p 
-          className="text-base md:text-2xl text-white font-normal tracking-wide"
+        <div 
+          className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-3 text-sm md:text-2xl text-white font-normal tracking-wide text-center"
           style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.6)' }}
         >
-          Bengaluru, India | +91 9108169453 | +91 9606379772
-        </p>
+          <span>Bengaluru, India</span>
+          <span className="hidden md:block">|</span>
+          <span>+91 9108169453</span>
+          <span className="hidden md:block">|</span>
+          <span>+91 9606379772</span>
+        </div>
       </m.div>
     </section>
   );

@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import { m } from 'framer-motion';
-import { MapPin, Phone, Mail, CircleUser, Download } from 'lucide-react';
+import { MapPin, Phone, Mail, CircleUser, Download, ChevronUp } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#f8f9fb] flex flex-col overflow-hidden">
+    <footer className="relative w-full bg-[#f8f9fb] flex flex-col overflow-hidden">
       
       
       <div className="relative w-full h-[250px] sm:h-[350px] lg:h-[450px] transform-gpu">
@@ -147,6 +147,15 @@ export default function Footer() {
         </m.div>
         
       </div>
+
+      {/* Scroll to Top Button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="absolute bottom-6 right-6 md:bottom-8 md:right-8 bg-[#0F2A55] text-white p-3 rounded-full shadow-lg hover:bg-[#1a3d75] transition-all hover:-translate-y-0.5 z-50 group cursor-pointer"
+        aria-label="Scroll to top"
+      >
+        <ChevronUp className="w-6 h-6 md:w-8 md:h-8 group-hover:-translate-y-1 transition-transform" />
+      </button>
     </footer>
   );
 }

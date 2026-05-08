@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import { FramerProvider } from "./components/FramerProvider";
+import { SmoothScroll } from "./components/SmoothScroll";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -25,9 +26,11 @@ export default function RootLayout({
       className={`h-full antialiased ${ubuntu.className}`}
     >
       <body className="min-h-full flex flex-col">
-        <FramerProvider>
-          {children}
-        </FramerProvider>
+        <SmoothScroll>
+          <FramerProvider>
+            {children}
+          </FramerProvider>
+        </SmoothScroll>
       </body>
     </html>
   );
