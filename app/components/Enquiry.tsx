@@ -1,15 +1,13 @@
 "use client";
 import { useState, useRef } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle2, Building2, User, Phone, Mail, MapPin, Package, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle2, User, Phone, Mail, MessageSquare, AlertCircle } from 'lucide-react';
 
 interface FormErrors {
   name?: string;
   email?: string;
   phone?: string;
-  company?: string;
-  gst?: string;
-  address?: string;
+  message?: string;
 }
 
 export default function Enquiry() {
@@ -39,24 +37,10 @@ export default function Enquiry() {
       newErrors.email = "Please enter a valid email address.";
     }
 
-    // Company Name: Alphanumeric and spaces, max 100 chars
-    const company = formData.get('entry.937622207') as string;
-    if (!/^[a-zA-Z0-9\s\.\-]{1,100}$/.test(company)) {
-      newErrors.company = "Company name should be alphanumeric and max 100 characters.";
-    }
-
-    // GST Number: 15 chars, standard GSTIN format
-    const gst = formData.get('entry.1945559581') as string;
-    if (!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(gst)) {
-      newErrors.gst = "Please enter a valid 15-digit GST number.";
-    }
-
-    // Delivery Address: Max 300 chars, basic punctuation allowed
-    const address = formData.get('entry.22132404') as string;
-    if (address && address.length > 300) {
-      newErrors.address = "Address should not exceed 300 characters.";
-    } else if (address && /[<>{}[\]\\^|]/.test(address)) {
-      newErrors.address = "Address contains invalid special characters.";
+    // Message Validation: Optional, but max 500 chars if provided
+    const message = formData.get('entry.224926441') as string;
+    if (message && message.length > 500) {
+      newErrors.message = "Message should not exceed 500 characters.";
     }
 
     setErrors(newErrors);
@@ -164,89 +148,32 @@ export default function Enquiry() {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Email */}
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                      <Mail className="w-4 h-4 text-[#0F2A55]" /> Email
-                    </label>
-                    <input
-                      type="email"
-                      name="entry.1491408678"
-                      placeholder="your@email.com"
-                      className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all`}
-                    />
-                    {errors.email && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.email}</p>}
-                  </div>
-
-                  {/* Company Name */}
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                      <Building2 className="w-4 h-4 text-[#0F2A55]" /> Company Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="entry.937622207"
-                      required
-                      placeholder="Organization Name"
-                      className={`w-full px-4 py-3 rounded-xl border ${errors.company ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all`}
-                    />
-                    {errors.company && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.company}</p>}
-                  </div>
-                </div>
-
-                {/* GST Number */}
+                {/* Email */}
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                    <Package className="w-4 h-4 text-[#0F2A55]" /> Company GST Number *
+                    <Mail className="w-4 h-4 text-[#0F2A55]" /> Email
                   </label>
                   <input
-                    type="text"
-                    name="entry.1945559581"
-                    required
-                    placeholder="15-digit GSTIN (e.g., 22AAAAA0000A1Z5)"
-                    className={`w-full px-4 py-3 rounded-xl border ${errors.gst ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all`}
-                    onChange={(e) => e.target.value = e.target.value.toUpperCase()}
+                    type="email"
+                    name="entry.1491408678"
+                    placeholder="your@email.com"
+                    className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all`}
                   />
-                  {errors.gst && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.gst}</p>}
+                  {errors.email && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.email}</p>}
                 </div>
 
-                {/* Materials Required */}
-                <div className="space-y-4">
-                  <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                    <Package className="w-4 h-4 text-[#0F2A55]" /> Materials Required *
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {["Bitumen VG 30", "Bitumen VG 40", "RS-1 Emulsion", "Others"].map((item) => (
-                      <label 
-                        key={item}
-                        className="flex items-center gap-3 p-4 rounded-xl border border-gray-100 bg-slate-50 hover:bg-slate-100 cursor-pointer transition-colors"
-                      >
-                        <input
-                          type="radio"
-                          name="entry.1069059552"
-                          value={item}
-                          required
-                          className="w-4 h-4 text-[#0F2A55] border-gray-300 focus:ring-[#0F2A55]"
-                        />
-                        <span className="text-gray-700 font-medium">{item}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Delivery Address */}
+                {/* Message */}
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-[#0F2A55]" /> Delivery Address
+                    <MessageSquare className="w-4 h-4 text-[#0F2A55]" /> Message
                   </label>
                   <textarea
-                    name="entry.22132404"
-                    rows={3}
-                    placeholder="Provide detailed delivery address..."
-                    className={`w-full px-4 py-3 rounded-xl border ${errors.address ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all resize-none`}
+                    name="entry.224926441"
+                    rows={4}
+                    placeholder="Tell us about your requirements..."
+                    className={`w-full px-4 py-3 rounded-xl border ${errors.message ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200'} focus:border-[#0F2A55] focus:ring-2 focus:ring-[#0F2A55]/10 outline-none transition-all resize-none`}
                   ></textarea>
-                  {errors.address && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.address}</p>}
+                  {errors.message && <p className="text-red-500 text-xs flex items-center gap-1 mt-1"><AlertCircle className="w-3 h-3" /> {errors.message}</p>}
                 </div>
 
                 <button
