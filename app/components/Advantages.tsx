@@ -38,7 +38,7 @@ export default function Advantages() {
       {/* Faint Background Watermark Image */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.07] transform-gpu">
         <Image 
-          src="/bg.jpg" // Replace with your pouring bitumen / lab equipment image
+          src="/bg_new.png" // Replace with your pouring bitumen / lab equipment image
           alt="Background Watermark" 
           fill 
           sizes="100vw"

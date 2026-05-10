@@ -7,7 +7,7 @@ export default function Hero() {
     <section className="relative min-h-[100svh] flex flex-col overflow-hidden bg-[#081e3a]">
       <div className="absolute inset-0 z-0 transform-gpu">
         <Image 
-          src="/bg.jpg" 
+          src="/bg_new.png" 
           alt="Road Infrastructure Background" 
           fill 
           sizes="100vw"

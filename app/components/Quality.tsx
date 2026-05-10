@@ -27,11 +27,11 @@ export default function Quality() {
           }}
         >
           <Image 
-            src="/bg.jpg" // Replace with your lab/highway testing image
+            src="/quality.png" // Replace with your lab/highway testing image
             alt="Quality Testing Infrastructure" 
             fill 
             sizes="(max-width: 768px) 100vw, 65vw"
-            className="object-cover object-left opacity-90"
+            className="object-cover opacity-90"
             quality={60}
           />
         </div>

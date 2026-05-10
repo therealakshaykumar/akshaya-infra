@@ -1,13 +1,12 @@
 "use client";
 import { m } from 'framer-motion';
 import Image from 'next/image';
-import { Ship, Truck, Droplets, Handshake } from 'lucide-react';
 
 const features = [
-  { icon: Ship, title: "Strong Network", desc: "Access to reputable suppliers and modern fleet of bitumen vessels." },
-  { icon: Truck, title: "Superior Logistics", desc: "On-time delivery at correct temperature anywhere in the country." },
-  { icon: Droplets, title: "High Quality Products", desc: "Premium bitumen (VG-30, VG-40) and emulsions matching diverse demands." },
-  { icon: Handshake, title: "Technical Expertise", desc: "Expert collaboration for optimal technical solutions and quality outcomes." },
+  { title: "Strong Network", desc: "Access to reputable suppliers and modern fleet of bitumen vessels.", img: "/ship.png" },
+  { title: "Superior Logistics", desc: "On-time delivery at correct temperature anywhere in the country.", img: "/truck.png" },
+  { title: "High Quality Products", desc: "Premium bitumen (VG-30, VG-40) and emulsions matching diverse demands.", img: "/droplets.png" },
+  { title: "Technical Expertise", desc: "Expert collaboration for optimal technical solutions and quality outcomes.", img: "/handshake.png" },
 ];
 
 export default function Features() {
@@ -19,7 +18,7 @@ export default function Features() {
         {/* Subtle background image overlay for the header */}
         <div className="absolute inset-0 z-0 opacity-30 mix-blend-overlay">
           <Image 
-            src="/bg.jpg" 
+            src="/bg_new.png" 
             alt="Header Background" 
             fill 
             sizes="100vw"
@@ -67,23 +66,31 @@ export default function Features() {
               viewport={{ once: true, amount: 0.2 }}
               style={{ willChange: "transform, opacity" }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="flex w-full overflow-hidden rounded-2xl border-2 border-[#0F2A55] bg-white shadow-xl hover:shadow-2xl transition-shadow duration-300 transform-gpu"
+              className="flex w-full overflow-hidden rounded-2xl border-2 border-[#0F2A55] bg-white shadow-xl hover:shadow-2xl transition-all duration-300 transform-gpu group"
             >
               {/* Left Side: Image Area */}
-              <div className="flex w-[35%] items-center justify-center bg-white p-4 md:p-6">
-                <feat.icon className="w-20 h-20 md:w-28 md:h-28 text-slate-300" strokeWidth={1.2} />
+              <div className="relative w-[40%] overflow-hidden bg-white">
+                <Image 
+                  src={feat.img} 
+                  alt={feat.title} 
+                  fill
+                  sizes="(max-width: 768px) 40vw, 20vw"
+                  className="object-contain transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Subtle overlay for image consistency */}
+                <div className="absolute inset-0 bg-[#0F2A55]/5 group-hover:bg-transparent transition-colors duration-500" />
               </div>
 
               {/* Right Side: Content Area */}
-              <div className="flex w-[65%] flex-col bg-[#f8f9fb]">
+              <div className="flex w-[60%] flex-col bg-[#f8f9fb]">
                 
                 {/* Blue Header - Flush to the edges of the right column */}
-                <div className="bg-[#0F2A55] px-6 py-3.5 text-xl md:text-2xl font-bold tracking-wide text-white -mr-5">
+                <div className="bg-[#0F2A55] px-6 py-4 text-xl md:text-2xl font-bold tracking-wide text-white">
                   {feat.title}
                 </div>
                 
                 {/* Text Body - Flex grow keeps it anchored nicely if cards stretch */}
-                <div className="bg-slate-100 grow px-6 py-4 md:py-6 text-lg md:text-[1.3rem] leading-snug text-gray-800 flex items-center">
+                <div className="bg-slate-50 grow px-6 py-4 md:py-6 text-lg md:text-[1.2rem] leading-snug text-gray-800 flex items-center border-l-4 border-slate-200">
                   {feat.desc}
                 </div>
                 

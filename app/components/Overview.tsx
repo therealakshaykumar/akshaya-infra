@@ -1,6 +1,7 @@
 "use client";
 import { m } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
+import Image from 'next/image';
 
 const bulletPoints = [
   "Leading bulk bitumen supplier with proven track record",
@@ -52,11 +53,29 @@ export default function Overview() {
            viewport={{ once: true, amount: 0.2 }}
            transition={{ duration: 0.6 }}
            style={{ willChange: "transform, opacity" }}
-           className="relative h-[500px] rounded-xl overflow-hidden shadow-2xl transform-gpu"
+           className="relative group"
         >
-            <div className="absolute inset-0 bg-slate-200 flex items-center justify-center text-slate-400">
-                [Insert Overview Image Here]
-            </div>
+          {/* Decorative background element */}
+          <div className="absolute -inset-4 bg-gradient-to-tr from-[#081e3a]/5 to-transparent rounded-3xl -z-10 transform rotate-2 transition-transform group-hover:rotate-1 duration-700" />
+          
+          <div className="relative h-[400px] md:h-[550px] rounded-2xl overflow-hidden shadow-2xl transform-gpu ring-1 ring-black/5">
+            <Image 
+              src="/overview.png" 
+              alt="Akshaya Infra Operations" 
+              fill 
+              sizes="(max-width: 768px) 90vw, 45vw"
+              className="object-cover transition-transform duration-1000 group-hover:scale-110"
+              priority
+            />
+            {/* Subtle overlay to give it a premium feel */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#081e3a]/10 to-transparent opacity-60 pointer-events-none" />
+            
+            {/* Bottom accent line */}
+            <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-[#081e3a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+          </div>
+
+          {/* Decorative floating element for desktop */}
+          
         </m.div>
       </div>
     </section>
