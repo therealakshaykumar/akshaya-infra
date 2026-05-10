@@ -119,10 +119,11 @@ export default function Enquiry() {
                 <div className="grid md:grid-cols-2 gap-6">
                   {/* Name */}
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <label htmlFor="name-input" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                       <User className="w-4 h-4 text-[#0F2A55]" /> Name *
                     </label>
                     <input
+                      id="name-input"
                       type="text"
                       name="entry.586361126"
                       required
@@ -134,10 +135,11 @@ export default function Enquiry() {
 
                   {/* Phone */}
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <label htmlFor="phone-input" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                       <Phone className="w-4 h-4 text-[#0F2A55]" /> Phone Number *
                     </label>
                     <input
+                      id="phone-input"
                       type="tel"
                       name="entry.131257919"
                       required
@@ -150,10 +152,11 @@ export default function Enquiry() {
 
                 {/* Email */}
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <label htmlFor="email-input" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                     <Mail className="w-4 h-4 text-[#0F2A55]" /> Email
                   </label>
                   <input
+                    id="email-input"
                     type="email"
                     name="entry.1491408678"
                     placeholder="your@email.com"
@@ -164,10 +167,11 @@ export default function Enquiry() {
 
                 {/* Message */}
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <label htmlFor="message-input" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                     <MessageSquare className="w-4 h-4 text-[#0F2A55]" /> Message
                   </label>
                   <textarea
+                    id="message-input"
                     name="entry.224926441"
                     rows={4}
                     placeholder="Tell us about your requirements..."
