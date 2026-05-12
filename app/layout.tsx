@@ -46,6 +46,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`h-full antialiased ${ubuntu.className}`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
         <SmoothScroll>

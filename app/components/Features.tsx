@@ -101,9 +101,15 @@ export default function Features() {
       </div>
 
       {/* Bottom Footer Bar */}
-      <div className="bg-[#0F2A55] w-full py-4 flex justify-center items-center shadow-inner mt-auto transform-gpu">
-        <p className="text-white text-lg md:text-xl tracking-wide font-light">
-          Bengaluru, India | +91 9108169453
+      <div className="bg-[#0F2A55] w-full py-6 md:py-4 px-6 flex justify-center items-center shadow-inner mt-auto transform-gpu">
+        <p className="text-white text-base md:text-xl tracking-wide font-light flex flex-col md:flex-row items-center gap-2 md:gap-0">
+          <span>Bengaluru, India</span>
+          <span className="hidden md:inline mx-3">|</span>
+          <span className="flex flex-col md:flex-row items-center gap-1 md:gap-3">
+            <span>+91 9108169453</span>
+            <span className="hidden md:inline">|</span>
+            <span>+91 9606379772</span>
+          </span>
         </p>
       </div>
 

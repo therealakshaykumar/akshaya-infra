@@ -64,7 +64,7 @@ export default function Quality() {
           style={{ willChange: "transform, opacity" }}
           className="mt-4 md:mt-8 md:w-[75%]"
         >
-          <h2 className="text-5xl md:text-[4rem] font-extrabold text-[#0F2A55] leading-[1.1] tracking-tight mb-4">
+          <h2 className="text-5xl md:text-[3.6rem] font-extrabold text-[#0F2A55] leading-[1.1] tracking-tight mb-4">
             Uncompromising Quality & <br className="hidden md:block"/> Industry Compliance
           </h2>
           <p className="text-2xl md:text-3xl text-gray-700 font-light mb-12 tracking-wide">
