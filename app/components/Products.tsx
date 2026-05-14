@@ -1,6 +1,7 @@
 "use client";
 import { m } from 'framer-motion';
 import Image from 'next/image';
+import { useLenis } from 'lenis/react';
 
 const products = [
   {
@@ -31,6 +32,8 @@ const products = [
 ];
 
 export default function Products() {
+  const lenis = useLenis();
+
   return (
     <section className="py-20 bg-[#0c2340] text-white px-6 md:px-12 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -77,17 +80,18 @@ export default function Products() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: idx * 0.15, duration: 0.6 }}
               style={{ willChange: "transform, opacity" }}
-              className="flex flex-col px-4 md:px-8 first:pl-0 last:pr-0"
+              className="flex flex-col px-4 md:px-8 first:pl-0 last:pr-0 cursor-pointer group"
+              onClick={() => lenis?.scrollTo('#contact')}
             >
               {/* Centered Product Title */}
-              <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 tracking-wide">
+              <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 tracking-wide group-hover:text-blue-300 transition-colors">
                 {prod.name}
               </h3>
 
               {/* PERFECT ALIGNMENT FIX: 
                   Replaced aspect-[4/3] with a strict height (h-[220px] lg:h-[260px]) 
                   This forces every image box to be identical in size regardless of the source image. */}
-              <div className="relative w-full h-[220px] lg:h-[260px] mb-8 bg-white overflow-hidden shadow-lg transform-gpu">
+              <div className="relative w-full h-[220px] lg:h-[260px] mb-8 bg-white overflow-hidden shadow-lg transform-gpu group-hover:shadow-2xl group-hover:scale-[1.02] transition-all duration-300">
                 <Image 
                   src={prod.image} 
                   alt={prod.name} 
@@ -100,7 +104,7 @@ export default function Products() {
 
               {/* Bulleted Features List */}
               <ul className="list-disc pl-6 space-y-2.5 text-lg md:text-[1.15rem] text-white/95 font-light leading-snug">
-                {prod.features.map((feat, fIdx) => (
+                {products[idx].features.map((feat, fIdx) => (
                   <li key={fIdx} className="pl-1 marker:text-white">
                     {feat}
                   </li>
@@ -114,3 +118,4 @@ export default function Products() {
     </section>
   );
 }
+

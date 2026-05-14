@@ -6,7 +6,7 @@ import { MapPin, Phone, Mail, CircleUser, Download, ChevronUp } from 'lucide-rea
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-[#f8f9fb] flex flex-col overflow-hidden">
+    <footer id="contact" className="relative w-full bg-[#f8f9fb] flex flex-col overflow-hidden">
       
       
       <div className="relative w-full h-[250px] sm:h-[350px] lg:h-[450px] transform-gpu">
@@ -68,7 +68,7 @@ export default function Footer() {
             >
               <MapPin className="w-8 h-8 text-[#0F2A55] shrink-0 mt-1"/>
               <p className="text-xl md:text-[1.35rem] text-gray-900 leading-snug">
-                #84/5, D.V.G Road, Basavanagudi,<br className="hidden md:block" /> Bengaluru - 560004, India
+                  #84/5, D.V.G Road, Basavanagudi,<br className="hidden md:block" /> Bengaluru - 560004, India
               </p>
             </m.div>
             
@@ -96,7 +96,7 @@ export default function Footer() {
             >
               <Phone className="w-8 h-8 text-[#0F2A55] shrink-0"/>
               <p className="text-xl md:text-[1.35rem] text-gray-900">
-                +91 9108169453 | +91 9606379772
+                <a href="tel:+919108169453" className="hover:text-[#1a3d75] transition-colors">+91 9108169453</a> | <a href="tel:+919606379772" className="hover:text-[#1a3d75] transition-colors">+91 9606379772</a>
               </p>
             </m.div>
             
@@ -110,7 +110,7 @@ export default function Footer() {
             >
               <Mail className="w-8 h-8 text-[#0F2A55] shrink-0"/>
               <p className="text-xl md:text-[1.35rem] text-gray-900">
-                akshayainfra33@gmail.com
+                <a href="mailto:akshayainfra33@gmail.com" className="hover:text-[#1a3d75] transition-colors">akshayainfra33@gmail.com</a>
               </p>
             </m.div>
 
