@@ -81,7 +81,14 @@ export default function Products() {
               transition={{ delay: idx * 0.15, duration: 0.6 }}
               style={{ willChange: "transform, opacity" }}
               className="flex flex-col px-4 md:px-8 first:pl-0 last:pr-0 cursor-pointer group"
-              onClick={() => lenis?.scrollTo('#contact')}
+              onClick={() => {
+                lenis?.scrollTo('#contact', {
+                  duration: 1.5,
+                  onComplete: () => {
+                    window.dispatchEvent(new CustomEvent('highlight-phone'));
+                  }
+                });
+              }}
             >
               {/* Centered Product Title */}
               <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 tracking-wide group-hover:text-blue-300 transition-colors">

@@ -1,10 +1,28 @@
 "use client";
 
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { m } from 'framer-motion';
 import { MapPin, Phone, Mail, CircleUser, Download, ChevronUp } from 'lucide-react';
 
 export default function Footer() {
+  const [isHighlighted, setIsHighlighted] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleHighlight = () => {
+      setIsHighlighted(true);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => setIsHighlighted(false), 3000);
+    };
+
+    window.addEventListener('highlight-phone', handleHighlight);
+    return () => {
+      window.removeEventListener('highlight-phone', handleHighlight);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
   return (
     <footer id="contact" className="relative w-full bg-[#f8f9fb] flex flex-col overflow-hidden">
       
@@ -86,19 +104,52 @@ export default function Footer() {
               </p>
             </m.div>
             
-            <m.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              style={{ willChange: "transform, opacity" }}
-              className="flex items-center gap-5"
-            >
+            <div className="flex items-center gap-5">
               <Phone className="w-8 h-8 text-[#0F2A55] shrink-0"/>
-              <p className="text-xl md:text-[1.35rem] text-gray-900">
-                <a href="tel:+919108169453" className="hover:text-[#1a3d75] transition-colors">+91 9108169453</a> | <a href="tel:+919606379772" className="hover:text-[#1a3d75] transition-colors">+91 9606379772</a>
-              </p>
-            </m.div>
+              <div className="text-xl md:text-[1.35rem] text-gray-900 flex flex-wrap items-center">
+                <a href="tel:+919108169453" className="hover:text-[#1a3d75] transition-colors inline-flex">
+                  {"+91 9108169453".split("").map((char, i) => (
+                    <m.span
+                      key={i}
+                      animate={isHighlighted ? { 
+                        y: [0, -10, 0],
+                        color: ["#111827", "#0F2A55", "#111827"],
+                        fontWeight: [400, 700, 400]
+                      } : {}}
+                      transition={{
+                        duration: 0.5,
+                        delay: i * 0.04,
+                        ease: "easeInOut"
+                      }}
+                      className="inline-block whitespace-pre"
+                    >
+                      {char}
+                    </m.span>
+                  ))}
+                </a>
+                <span className="mx-2 text-gray-400">|</span>
+                <a href="tel:+919606379772" className="hover:text-[#1a3d75] transition-colors inline-flex">
+                  {"+91 9606379772".split("").map((char, i) => (
+                    <m.span
+                      key={i}
+                      animate={isHighlighted ? { 
+                        y: [0, -10, 0],
+                        color: ["#111827", "#0F2A55", "#111827"],
+                        fontWeight: [400, 700, 400]
+                      } : {}}
+                      transition={{
+                        duration: 0.5,
+                        delay: 0.6 + i * 0.04,
+                        ease: "easeInOut"
+                      }}
+                      className="inline-block whitespace-pre"
+                    >
+                      {char}
+                    </m.span>
+                  ))}
+                </a>
+              </div>
+            </div>
             
             <m.div 
               initial={{ opacity: 0, x: 20 }}
